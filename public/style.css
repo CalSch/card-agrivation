@@ -1,0 +1,32 @@
+:root {
+	--hole-size: 8.3333px;
+	--hole-space: 8.3333px;
+}
+
+* {
+	transition: all 0.3s ease;
+}
+
+div.board {
+	border-radius:50%;
+	/* background-color: rgb(177, 111, 37); */
+	background: rgb(177,111,37);
+	background: -moz-radial-gradient(   circle, rgba(177,111,37,1) 50%, rgba(138,73,10,1) 90%);
+	background: -webkit-radial-gradient(circle, rgba(177,111,37,1) 50%, rgba(138,73,10,1) 90%);
+	background: radial-gradient(        circle, rgba(177,111,37,1) 50%, rgba(138,73,10,1) 90%);
+	width:500px;
+	height:500px;
+}
+
+div.hole {
+	position:absolute;
+	border-radius:50%;
+	background-color: rgb(70, 40, 7);
+	width:var(--hole-size);
+	height:var(--hole-size);
+	
+}
+div.hole:hover {
+	border: 2px yellow solid;
+	transform:translate(-2px,-2px);
+}
