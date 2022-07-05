@@ -1,3 +1,5 @@
+//#region holes
+
 let boardEl=document.getElementById('board');
 let holesEl=document.getElementById('holes');
 
@@ -6,9 +8,7 @@ let holeSpace=5.8;
 let A=41.6666667;
 let B=(500-((holeSpace+holeSize)*13))/2;
 
-/**
- * @type {HTMLDivElement[]}
- */
+/**@type {HTMLDivElement[]}*/
 let holes=[];
 
 let testHole=get_hole(0,0);
@@ -34,7 +34,7 @@ function make_hole(x,y,id=0) {
 	el.classList.add('hole');
 	el.style.left=`${x}px`;
 	el.style.top=`${y}px`;
-	el.style.backgroundColor=`hsl(0,0%,${id%6==0?100:0}%)`
+	// el.style.backgroundColor=`hsl(0,0%,${id%6==0?100:0}%)`
 	el.setAttribute('title',id);
 	el.setAttribute('hid',id);
 	holesEl.appendChild(el);
@@ -118,3 +118,43 @@ function gen_holes() {
 		cid--;
 	}
 }
+//#endregion
+
+//#region pegs
+
+let colors=['yellow','red','blue','grey'];
+
+class Peg {
+	/**
+	 * @param {number} pos 
+	 * @param {number} color 
+	 * @param {boolean} isBlocker 
+	 * @param {boolean} poisoned 
+	 */
+	constructor(pos,color,isBlocker=false,poisoned=false) {
+		this.pos=pos;
+		this.color=color;
+		this.isBlocker=isBlocker;
+		this.poisoned=poisoned;
+	}
+	move(spaces) {
+		this.pos+=spaces;
+	}
+
+}
+
+function renderPeg(peg) {
+	// holes[peg.pos].classList.remove(colors);
+	// holes[peg.pos].classList.add(colors[peg.color]);
+	// holes[peg.pos].classList.replace(/(yellow|red|blue|grey)/g,colors[peg.color]);
+	holes[peg.pos].style.setProperty('--peg-color',colors[peg.color]);
+	
+}
+
+let peg=new Peg(0,0);
+renderPeg(peg);
+renderPeg(new Peg(1,1));
+renderPeg(new Peg(2,2));
+renderPeg(new Peg(3,3));
+
+//#endregion
